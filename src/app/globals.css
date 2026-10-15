@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-brand-navy: #0b2545;
+  --color-brand-navy-dark: #07172c;
+  --color-brand-navy-light: #134074;
+  --color-brand-ink: #102b49;
+  --color-brand-red: #ba202c;
+  --color-brand-red-dark: #991b1b;
+  --color-brand-red-light: #ef4444;
+}
+
+@layer base {
+  :root {
+    --brand-blue: #0b2545;
+    --brand-blue-dark: #07172c;
+    --brand-blue-light: #134074;
+    --brand-blue-accent: #0066cc;
+    --brand-red: #ba202c;
+    --brand-red-dark: #991b1b;
+    --brand-red-light: #ef4444;
+  }
+
+  body {
+    background-color: #f6f8fa;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(186, 32, 44, 0.9);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.04); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Custom premium hover cards and card zoom effects */
+.premium-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.08);
+  border-color: rgba(186, 32, 44, 0.15);
+}
+
+.premium-img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Custom scrollbar for news ticker and category tags */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Premium magazine grid spacing & layout helpers */
+.editorial-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .editorial-grid {
+    gap: 2rem;
+  }
+}

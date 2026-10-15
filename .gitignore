@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+coverage/
+*.log
+*.tsbuildinfo
+.freebuff/
+.tmp_*
+.env
+.env.*
+!.env.example
+.vercel/
