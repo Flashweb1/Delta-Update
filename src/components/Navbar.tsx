@@ -35,10 +35,21 @@ export default function Navbar({
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [currentDate, setCurrentDate] = useState("");
   const [currentDateTime, setCurrentDateTime] = useState("");
 
   useEffect(() => {
     const updateTime = () => {
+      const now = new Date();
+      setCurrentDate(
+        new Intl.DateTimeFormat("en-NG", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "Africa/Lagos",
+        }).format(now),
+      );
       setCurrentDateTime(
         new Intl.DateTimeFormat("en-NG", {
           weekday: "long",
@@ -49,7 +60,7 @@ export default function Navbar({
           minute: "2-digit",
           timeZone: "Africa/Lagos",
           timeZoneName: "short",
-        }).format(new Date()),
+        }).format(now),
       );
     };
 
@@ -67,8 +78,8 @@ export default function Navbar({
     <header className="sticky top-0 z-40 bg-white shadow-[0_4px_18px_rgba(15,23,42,0.06)]">
       {/* A deliberately quiet utility strip keeps context separate from the brand. */}
       <div className="bg-[#102b49] text-white">
-        <div className="mx-auto flex min-h-8 max-w-7xl items-center justify-between gap-3 px-4 text-[10px] sm:text-[11px]">
-          <div className="flex min-w-0 items-center gap-2.5">
+        <div className="mx-auto flex min-h-8 max-w-7xl items-center justify-center gap-3 px-4 text-[10px] sm:justify-between sm:text-[11px]">
+          <div className="hidden min-w-0 items-center gap-2.5 sm:flex">
             <span className="inline-flex shrink-0 items-center gap-1.5 font-bold uppercase tracking-[0.13em] text-blue-100">
               <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
               Nigeria · 36 States + FCT
@@ -80,7 +91,8 @@ export default function Navbar({
           </div>
           <span className="flex shrink-0 items-center gap-1.5 text-blue-100/90">
             <Clock3 className="h-3 w-3 text-red-300" aria-hidden="true" />
-            <time>{currentDateTime || "West Africa Time · Nigeria"}</time>
+            <time className="sm:hidden">{currentDate || "West Africa Time · Nigeria"}</time>
+            <time className="hidden sm:inline">{currentDateTime || "West Africa Time · Nigeria"}</time>
           </span>
         </div>
       </div>
